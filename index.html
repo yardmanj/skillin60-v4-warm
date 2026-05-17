@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillIn60 — Your First Skill, Built Together</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; background: #fefdfb; color: #2d2a26; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 25px; }
+        .serif { font-family: 'DM Serif Display', serif; }
+        
+        /* ORGANIC SHAPES */
+        .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.4; z-index: -1; }
+        .blob-1 { width: 400px; height: 400px; background: #f4d03f; top: -100px; right: -100px; }
+        .blob-2 { width: 300px; height: 300px; background: #85c1e9; bottom: 200px; left: -100px; }
+        
+        /* NAV */
+        nav { padding: 30px 0; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-mark { width: 48px; height: 48px; background: #e8a87c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 1.1rem; }
+        .logo-text { font-weight: 700; font-size: 1.3rem; color: #2d2a26; }
+        
+        /* HERO */
+        .hero { padding: 60px 0 80px; text-align: center; position: relative; }
+        .handwritten { font-family: 'DM Serif Display', serif; font-style: italic; color: #e8a87c; font-size: 1.3rem; margin-bottom: 20px; }
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 25px; color: #2d2a26; }
+        .hero h1 .highlight { color: #e8a87c; }
+        .hero-sub { font-size: 1.2rem; color: #6b6560; max-width: 550px; margin: 0 auto 40px; }
+        .btn { display: inline-block; background: #2d2a26; color: #fefdfb; padding: 18px 45px; font-weight: 600; font-size: 1.1rem; text-decoration: none; border-radius: 100px; transition: all 0.3s; }
+        .btn:hover { background: #e8a87c; transform: translateY(-2px); }
+        .trust-pills { margin-top: 40px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .pill { background: #fff; padding: 10px 20px; border-radius: 100px; font-size: 0.85rem; color: #6b6560; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        
+        /* SECTIONS */
+        .section { padding: 80px 0; }
+        .section-sand { background: #f9f6f3; }
+        h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 30px; color: #2d2a26; }
+        h3 { font-size: 1.3rem; font-weight: 700; margin: 30px 0 15px; color: #2d2a26; }
+        p { margin-bottom: 20px; color: #6b6560; font-size: 1.05rem; }
+        
+        /* JOURNEY CARDS */
+        .journey { display: grid; gap: 25px; margin: 40px 0; }
+        .journey-card { background: #fff; padding: 35px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); position: relative; }
+        .journey-card::before { content: attr(data-step); position: absolute; top: -15px; left: 30px; background: #e8a87c; color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
+        .journey-card h3 { margin-top: 10px; color: #2d2a26; }
+        .journey-card ul { margin: 15px 0 0 20px; color: #6b6560; }
+        .journey-card li { margin-bottom: 8px; }
+        
+        /* QUOTE */
+        .quote-box { background: #fff; padding: 50px; border-radius: 20px; margin: 40px 0; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .quote-text { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-style: italic; color: #2d2a26; margin-bottom: 20px; }
+        .quote-author { font-weight: 600; color: #e8a87c; }
+        
+        /* PRICE */
+        .price-section { text-align: center; padding: 100px 0; }
+        .price-card { background: #fff; padding: 60px; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 450px; margin: 0 auto; position: relative; }
+        .price-card::before { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%); width: 100px; height: 10px; background: #e8a87c; border-radius: 10px; }
+        .price { font-size: 5rem; font-weight: 700; color: #2d2a26; line-height: 1; margin: 20px 0; }
+        .price span { font-size: 1.5rem; vertical-align: super; color: #6b6560; }
+        .original { text-decoration: line-through; color: #b0aba6; margin-bottom: 20px; }
+        .includes { text-align: left; margin: 30px 0; }
+        .includes li { list-style: none; padding: 12px 0; padding-left: 35px; position: relative; border-bottom: 1px dashed #e0dcd7; }
+        .includes li::before { content: '✓'; position: absolute; left: 0; color: #e8a87c; font-weight: 700; font-size: 1.2rem; }
+        
+        /* GUARANTEE */
+        .guarantee { background: #f0ebe5; padding: 40px; border-radius: 20px; text-align: center; margin: 40px 0; }
+        .guarantee h3 { color: #2d2a26; margin-bottom: 15px; }
+        
+        footer { padding: 50px 0; text-align: center; color: #a09993; }
+    </style>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    
+    <nav>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-mark">60</div>
+                <div class="logo-text">SkillIn60</div>
+            </a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="handwritten">Humans Are The Bottleneck</div>
+            <h1>Build Your First <span class="highlight">AI Skill</span> in 60 Minutes</h1>
+            <p class="hero-sub">A gentle, step-by-step guide for the technically curious who are ready to stop planning and start building.</p>
+            <a href="#buy" class="btn">Begin Your Journey — $47</a>
+            <div class="trust-pills">
+                <span class="pill">✓ 5 Modules</span>
+                <span class="pill">✓ 15 Video Lessons</span>
+                <span class="pill">✓ 7 Templates</span>
+                <span class="pill">✓ 30-Day Guarantee</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-sand">
+        <div class="container">
+            <h2>Your Learning Journey</h2>
+            <p>Five modules. One hour. From complete beginner to skill builder.</p>
+            
+            <div class="journey">
+                <div class="journey-card" data-step="1">
+                    <h3>The 5-Minute Setup</h3>
+                    <p>We'll get you configured and ready to build together.</p>
+                    <ul>
+                        <li>What you'll build today (a preview)</li>
+                        <li>Creating your account (step-by-step)</li>
+                        <li>Verification checklist</li>
+                    </ul>
+                </div>
+                
+                <div class="journey-card" data-step="2">
+                    <h3>Understanding Skills</h3>
+                    <p>Before we build, let's understand how skills actually work.</p>
+                    <ul>
+                        <li>What is an AI skill? (simply explained)</li>
+                        <li>The SKILL.md framework</li>
+                        <li>Your template library</li>
+                    </ul>
+                </div>
+                
+                <div class="journey-card" data-step="3">
+                    <h3>Building Together</h3>
+                    <p>This is where the magic happens. We'll build your skill in real-time.</p>
+                    <ul>
+                        <li>Choosing your template</li>
+                        <li>Filling in the blanks (worksheet included)</li>
+                        <li>Connecting your tools</li>
+                    </ul>
+                </div>
+                
+                <div class="journey-card" data-step="4">
+                    <h3>Testing & Refining</h3>
+                    <p>Making sure it works. And knowing what to do when it doesn't.</p>
+                    <ul>
+                        <li>Running your first test</li>
+                        <li>The Troubleshooting Bible</li>
+                        <li>Adding those final touches</li>
+                    </ul>
+                </div>
+                
+                <div class="journey-card" data-step="5">
+                    <h3>Deployment & Beyond</h3>
+                    <p>Going live and planning your next 30 days of skill building.</p>
+                    <ul>
+                        <li>Publishing your skill</li>
+                        <li>7 skill types that sell</li>
+                        <li>Your personal action plan</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="quote-box">
+                <div class="quote-text">"I have a marketing background. Zero technical skills. I was convinced this would be too hard for me. Had my first working skill in 52 minutes. I literally shouted when it worked."</div>
+                <div class="quote-author">— Jennifer R., Marketing Manager</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="price-section" id="buy">
+        <div class="container">
+            <div class="price-card">
+                <div class="handwritten" style="margin-bottom: 10px;">The Complete System</div>
+                <h2 style="margin-bottom: 10px;">SkillIn60</h2>
+                <div class="original">Regular Price $97</div>
+                <div class="price"><span>$</span>47</div>
+                <p style="color: #6b6560; margin-bottom: 30px;">One-time payment. Lifetime access.</p>
+                <ul class="includes">
+                    <li>5 complete modules</li>
+                    <li>15 video lessons</li>
+                    <li>7 skill templates</li>
+                    <li>Troubleshooting Bible</li>
+                    <li>Private community access</li>
+                    <li>30-day action plan</li>
+                </ul>
+                <a href="https://buy.stripe.com/3cI3cwdRTgCY6bY09ydQQ00" class="btn" style="width: 100%; text-align: center;">Get Instant Access</a>
+            </div>
+            
+            <div class="guarantee">
+                <h3>The "First Skill or Money Back" Promise</h3>
+                <p>Follow the course. Build your first skill. If you don't have a working skill within 60 minutes, or if you're not satisfied for any reason, email me for a full refund. No questions asked.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Made with care by Anthony Cameron | anthonyc@agentmail.to</p>
+            <p style="margin-top: 10px;">© 2026 SkillIn60</p>
+        </div>
+    </footer>
+</body>
+</html>
